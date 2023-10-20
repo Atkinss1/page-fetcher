@@ -61,6 +61,7 @@ request(fileAddress, (error, response, body) => {
                   // if no errors occur, it will display the file name created and size
                   
                   console.log(`File was written successfully\nFile name: ${filePath.slice(2)}\nFile size: ${fileSize} bytes`);
+                  rl.close();
                 }
               });
             }
@@ -74,6 +75,7 @@ request(fileAddress, (error, response, body) => {
                   console.log(err);
                 } else {
                   console.log(`${filePath.slice(2)} has succesfully been apended\nFile size is now: ${fileSize + currentFileSize} bytes`);
+                  rl.close();
                 }
               });
             }
