@@ -6,7 +6,6 @@ const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
-stdin.setRawMode(true);
 stdin.setEncoding('utf-8');
 
 /**File address will be needed as the first parameter on the commandline, followed by your designated path.
