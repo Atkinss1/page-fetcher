@@ -32,11 +32,17 @@ request(fileAddress, (error, response, body) => {
     
     fs.stat(filePath, (err, stats) => {
       
-      // size of current file
-
-      let currentFileSize = stats.size;
       if (err) {
-        console.log('There was an error: ', err);
+        fs.writeFile(filePath, body, (err) => {
+          if (err) {
+            console.log('There was an error: ', err);
+          } else {
+
+            // if no errors occur, it will display the file name created and size
+                  
+            console.log(`File path did not exist. Created new file.\nFile name: ${filePath.slice(2)}\nFile size: ${fileSize} bytes`);
+          }
+        });
       } else {
 
         // if there is no errors we will check if the file exists in the path
@@ -58,6 +64,7 @@ request(fileAddress, (error, response, body) => {
                 }
               });
             }
+            let currentFileSize = stats.size;
 
             // if the answer is equal to 'N', we will add the current information to the file in the specified path
 
@@ -66,7 +73,7 @@ request(fileAddress, (error, response, body) => {
                 if (err) {
                   console.log(err);
                 } else {
-                  console.log(`The ${filePath.slice(2)} has succesfully been apended: file size is now: ${fileSize + currentFileSize} bytes`);
+                  console.log(`${filePath.slice(2)} has succesfully been apended\nFile size is now: ${fileSize + currentFileSize} bytes`);
                 }
               });
             }
